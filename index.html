@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>皖南·郴州自驾大环线 · 11天修订版攻略（9.25–10.5）</title>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{
+  --ink:#1e3a33;          /* 墨绿 */
+  --ink-2:#2f5a4d;
+  --paper:#f6f2e7;        /* 宣纸 */
+  --paper-2:#efe9d8;
+  --danxia:#c65a3a;       /* 丹霞朱砂 */
+  --danxia-deep:#a34227;
+  --bamboo:#4a7c59;
+  --gold:#b98a2f;
+  --line:#d8cfb8;
+  --text:#33382f;
+  --text-soft:#6b6f63;
+  --font-display:"STZhongsong","华文中宋","Songti SC","SimSun",serif;
+  --font-kai:"KaiTi","楷体","STKaiti",serif;
+  --font-body:"PingFang SC","Microsoft YaHei","微软雅黑",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);color:var(--text);background:var(--paper);
+  background-image:
+    radial-gradient(ellipse at 15% 8%, rgba(74,124,89,.07), transparent 45%),
+    radial-gradient(ellipse at 90% 30%, rgba(198,90,58,.06), transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(120,100,60,.018) 2px 4px);
+  line-height:1.75;
+}
+/* ---------- 顶部导航 ---------- */
+nav{
+  position:sticky;top:0;z-index:1000;display:flex;gap:4px;align-items:center;
+  padding:10px 18px;background:rgba(30,58,51,.92);backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--danxia);
+}
+nav .brand{font-family:var(--font-display);color:#f3e9d2;font-size:15px;letter-spacing:2px;margin-right:auto}
+nav a{color:#cfd8c8;text-decoration:none;font-size:13px;padding:4px 10px;border-radius:3px;white-space:nowrap}
+nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+/* ---------- HERO ---------- */
+header{
+  position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:60px 8vw 46px;color:#f5efdf;overflow:hidden;
+  background-color:#22392f;
+  background-image:linear-gradient(168deg, rgba(22,42,36,.86) 0%, rgba(22,42,36,.52) 55%, rgba(140,60,35,.45) 100%),url("assets/gaoyiling-hero.jpg");
+  background-position:0 0,center 38%;
+  background-size:cover,cover;
+  background-repeat:no-repeat;
+}
+header .seal{
+  position:absolute;top:34px;right:6vw;width:52px;height:52px;border:2px solid rgba(245,239,223,.85);
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-kai);font-size:20px;line-height:1.15;text-align:center;
+  color:#f5efdf;background:rgba(163,66,39,.55);transform:rotate(6deg);letter-spacing:0;
+}
+header .kicker{font-family:var(--font-kai);font-size:clamp(15px,2vw,19px);letter-spacing:6px;color:#e8d9b8;margin-bottom:14px}
+header h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(34px,5.6vw,64px);letter-spacing:6px;line-height:1.28;margin-bottom:18px;
+  text-shadow:0 2px 24px rgba(0,0,0,.45);
+}
+header .sub{font-size:clamp(13px,1.6vw,16px);color:#e3dcc6;max-width:720px;margin-bottom:30px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 34px;border-top:1px solid rgba(245,239,223,.3);padding-top:20px}
+.stat b{display:block;font-family:var(--font-display);font-size:clamp(20px,3vw,30px);letter-spacing:1px}
+.stat span{font-size:12px;color:#cfc8ae;letter-spacing:2px}
+/* ---------- 通用版式 ---------- */
+main{max-width:1080px;margin:0 auto;padding:0 5vw}
+section{padding:64px 0 30px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-head .no{
+  font-family:var(--font-display);color:#f3e9d2;background:var(--ink);
+  width:34px;height:34px;border-radius:4px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex:none;transform:translateY(-2px);box-shadow:3px 3px 0 rgba(198,90,58,.9);
+}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(22px,3.4vw,32px);letter-spacing:3px;color:var(--ink)}
+.sec-sub{font-family:var(--font-kai);color:var(--text-soft);font-size:15px;margin-bottom:26px;letter-spacing:1px}
+html.js .reveal{opacity:0;transform:translateY(26px)}
+html.js .reveal.on{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+/* ---------- 修订要点 ---------- */
+.fixgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fix{
+  background:#fffdf6;border:1px solid var(--line);border-left:4px solid var(--danxia);
+  border-radius:6px;padding:16px 18px;box-shadow:2px 3px 0 rgba(216,207,184,.5);
+}
+.fix h3{font-size:15px;color:var(--ink);margin-bottom:8px;font-family:var(--font-display);letter-spacing:1px}
+.fix .was{color:#9a6b5a;font-size:13px;text-decoration:line-through;text-decoration-color:rgba(198,90,58,.6);display:block}
+.fix .now{color:var(--bamboo);font-size:13.5px;font-weight:600;display:block;margin-top:2px}
+/* ---------- 地图 ---------- */
+#map{height:500px;border:1px solid var(--line);border-radius:8px;box-shadow:0 10px 30px rgba(30,58,51,.12);z-index:1;background:#e9e3d1}
+.mapnote{font-size:12px;color:var(--text-soft);margin:8px 2px 0}
+.daybtns{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 12px}
+.daybtns button{
+  font-family:var(--font-body);cursor:pointer;border:1px solid var(--ink-2);background:#fffdf6;color:var(--ink);
+  padding:5px 14px;border-radius:999px;font-size:13px;transition:.18s;
+}
+.daybtns button:hover{transform:translateY(-1px)}
+.daybtns button.act{background:var(--danxia);border-color:var(--danxia);color:#fff;box-shadow:0 3px 10px rgba(198,90,58,.4)}
+#dayinfo{
+  background:#fffdf6;border:1px dashed var(--ink-2);border-radius:6px;padding:12px 16px;font-size:14px;margin-top:10px;
+}
+#dayinfo b{color:var(--ink)}
+/* ---------- 每日卡片 ---------- */
+.day{
+  background:#fffdf6;border:1px solid var(--line);border-radius:10px;margin-bottom:34px;overflow:hidden;
+  box-shadow:0 6px 22px rgba(30,58,51,.07);
+}
+.day .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:18px 24px 14px;border-bottom:1px solid var(--line)}
+.day .dno{
+  font-family:var(--font-display);font-size:26px;color:var(--danxia);letter-spacing:1px;margin-right:4px;
+}
+.day .route{font-family:var(--font-display);font-size:clamp(17px,2.4vw,21px);color:var(--ink);letter-spacing:1px;font-weight:700}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.badge{font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--paper-2);color:var(--text-soft);white-space:nowrap}
+.badge.fest{border-color:var(--danxia);color:var(--danxia-deep);background:#faeadf}
+.badge.free{border-color:var(--bamboo);color:var(--bamboo);background:#e9f2ea}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:12px 24px 0}
+.chip{
+  font-size:12.5px;color:var(--ink);background:#f1ead6;border-radius:4px;padding:3px 10px;letter-spacing:.5px;
+}
+.chip em{font-style:normal;color:var(--danxia-deep);font-weight:700}
+.day .body{display:grid;grid-template-columns:1.15fr .85fr;gap:0 26px;padding:16px 24px 22px}
+.day .pics{display:grid;gap:10px;align-content:start}
+.day figure{position:relative;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.day figure img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.day figure:hover img{transform:scale(1.045)}
+.day figcaption{
+  position:absolute;left:0;bottom:0;right:0;padding:14px 10px 6px;font-size:11.5px;color:#f2ecd9;letter-spacing:1px;
+  background:linear-gradient(transparent,rgba(24,38,32,.72));
+}
+.block-title{
+  font-family:var(--font-kai);color:var(--ink);font-size:15.5px;letter-spacing:2px;margin:14px 0 6px;
+  display:flex;align-items:center;gap:8px;
+}
+.block-title::before{content:"";width:10px;height:10px;background:var(--danxia);border-radius:2px;transform:rotate(45deg);flex:none}
+.block-title.green::before{background:var(--bamboo)}
+.block-title.gold::before{background:var(--gold)}
+.day ul{margin:0 0 0 2px;list-style:none}
+.day ul li{position:relative;padding-left:16px;font-size:14px;margin-bottom:5px;color:#41453c}
+.day ul li::before{content:"·";position:absolute;left:2px;color:var(--danxia);font-weight:900}
+.stay{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.stay .box{background:var(--paper-2);border-radius:6px;padding:10px 13px;font-size:13px}
+.stay .box b{display:block;font-family:var(--font-kai);letter-spacing:2px;color:var(--ink);margin-bottom:4px;font-size:14px}
+.warn{
+  margin:14px 0 0;border-left:4px solid var(--danxia);background:#f9ece2;border-radius:0 6px 6px 0;
+  padding:10px 14px;font-size:13px;color:#7a4a33;
+}
+.warn b{color:var(--danxia-deep)}
+/* ---------- 预算 ---------- */
+table.budget{width:100%;border-collapse:collapse;background:#fffdf6;font-size:14px;border:1px solid var(--line)}
+table.budget th{background:var(--ink);color:#f3e9d2;font-weight:600;padding:10px 12px;letter-spacing:1px;text-align:left}
+table.budget td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+table.budget tr:nth-child(even) td{background:#f8f4e8}
+table.budget tr.total td{background:#f1e7d2;font-weight:800;color:var(--ink)}
+table.budget .old{color:#a08b76;text-decoration:line-through;font-size:12.5px}
+/* ---------- 规则 & 清单 ---------- */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+.rule{background:#fffdf6;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:13.5px}
+.rule b{display:block;color:var(--ink);font-family:var(--font-display);letter-spacing:1px;margin-bottom:4px;font-size:15px}
+#checklist li{list-style:none;display:flex;gap:10px;align-items:flex-start;background:#fffdf6;border:1px solid var(--line);
+  border-radius:6px;padding:11px 14px;margin-bottom:8px;font-size:14px;cursor:pointer;transition:.15s}
+#checklist li:hover{border-color:var(--bamboo)}
+#checklist li input{margin-top:5px;accent-color:var(--bamboo);width:15px;height:15px;cursor:pointer}
+#checklist li.done{opacity:.55}
+#checklist li.done .t{text-decoration:line-through}
+#checklist li .when{flex:none;font-family:var(--font-kai);color:var(--danxia-deep);font-size:13px;min-width:74px}
+/* ---------- footer ---------- */
+footer{margin-top:70px;background:var(--ink);color:#c8cfbe;padding:40px 8vw 34px;font-size:12.5px;line-height:2}
+footer h4{font-family:var(--font-display);color:#f3e9d2;letter-spacing:3px;font-size:16px;margin-bottom:8px}
+footer .src{color:#9aa895}
+@media (max-width:760px){
+  .day .body{grid-template-columns:1fr}
+  .day .pics{grid-template-columns:1fr 1fr}
+  #map{height:380px}
+  nav a{display:none}
+  nav .brand{margin-right:0}
+}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+
+<nav>
+  <span class="brand">皖南 · 郴州 · 自驾大环线</span>
+  <a href="#fixes">修订要点</a><a href="#mapsec">路线地图</a><a href="#days">每日行程</a>
+  <a href="#budget">预算</a><a href="#rules">注意事项</a><a href="#todo">出发清单</a>
+</nav>
+
+<header>
+  <div class="seal">行<br>记</div>
+  <div class="kicker">二〇二六 · 中秋国庆 · 四人两间</div>
+  <h1>皖南川藏 · 瓷都丹霞<br>赣粤浙十一日自驾环线</h1>
+  <p class="sub">宁波出发绕大半个江南：盘山天路、陶溪川夜市、高椅岭丹霞、东江湖、江南宋城、水亭门——全程只保留一个收费景点（高椅岭），其余全是免费点位。本页面为<b>评审修订版 v2.0</b>：修正了原方案 3 处里程错误与中秋假期盲区，Day5 由 800 公里硬扛改为衡阳分段。</p>
+  <div class="stats">
+    <div class="stat"><b>11 天</b><span>9.25 中秋 — 10.5</span></div>
+    <div class="stat"><b>≈3200 km</b><span>真实总里程</span></div>
+    <div class="stat"><b>9 城</b><span>宁国·宣城·景德镇·衡阳·东江·韶关·赣州·衢州</span></div>
+    <div class="stat"><b>1 个</b><span>唯一收费景点：高椅岭</span></div>
+    <div class="stat"><b>≈1.0 万</b><span>4 人全包预算（电车）</span></div>
+  </div>
+</header>
+
+<main>
+
+<!-- 修订要点 -->
+<section id="fixes" class="reveal">
+  <div class="sec-head"><span class="no">壹</span><h2>为什么改：六处关键修订</h2></div>
+  <p class="sec-sub">原方案思路很好，但里程和日历错了——下面每条都改在了刀刃上。</p>
+  <div class="fixgrid">
+    <div class="fix"><h3>① Day5 拆线（最重要）</h3><span class="was">景德镇→郴州「420km」，当天玩高椅岭</span><span class="now">实际 780~850km、9~11h → 改为 Day4 下午住衡阳 + Day5 上午 200km 到东江</span></div>
+    <div class="fix"><h3>② 中秋节被漏掉了</h3><span class="was">9.25~9.27 是中秋假期（高速不免费），9.26=假期周六</span><span class="now">Day2 川藏线一年最堵日：6:00 出发、6:30 前进山，查交警管制通告</span></div>
+    <div class="fix"><h3>③ Day10 里程低估</h3><span class="was">赣州→衢州「480km」</span><span class="now">实际 620~700km / 7~8h，10.4 返程高峰，7:00 前出发；备选改住上饶</span></div>
+    <div class="fix"><h3>④ Day11 里程低估</h3><span class="was">衢州→宁波「230km」</span><span class="now">实际 320~380km / 约 4h，仍在国庆免费期内</span></div>
+    <div class="fix"><h3>⑤ 高速费自相矛盾</h3><span class="was">分段合计 490 元，总预算却写 920 元</span><span class="now">按真实里程重算：收费段约 660~750 元</span></div>
+    <div class="fix"><h3>⑥ 高椅岭购票规则</h3><span class="was">当天线上买票直接去</span><span class="now">线上票 30 分钟后才生效 → 提前一天买；16:40 停止入园；70+ 免票、60-69 半价</span></div>
+  </div>
+</section>
+
+<!-- 地图 -->
+<section id="mapsec" class="reveal">
+  <div class="sec-head"><span class="no">贰</span><h2>全程路线地图</h2></div>
+  <p class="sec-sub">点下面的日期按钮切换每天的路线段；先看「全程」感受这个大环线的走向。</p>
+  <div class="daybtns" id="daybtns"></div>
+  <div id="map"></div>
+  <div id="dayinfo"></div>
+  <p class="mapnote">* 路线为示意走向（沿高速/主要公路近似连线），实际导航以高德/百度为准；地图数据 © 高德地图。</p>
+</section>
+
+<!-- 每日行程 -->
+<section id="days">
+  <div class="sec-head reveal"><span class="no">叁</span><h2>每日详细安排</h2></div>
+  <p class="sec-sub reveal">住宿全部按「入住前 1 天 24:00 免费取消 + 免费停车」标准预订；行程累了可原地加住一晚，不硬赶。</p>
+
+  <!-- D1 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D1</span><span class="route">宁波 → 宁国</span>
+      <div class="badges"><span class="badge fest">中秋假期·正日</span><span class="badge">310 km</span><span class="badge">约3.5h</span><span class="badge">过路费≈145元</span></div></div>
+    <div class="chips"><span class="chip">住 <em>如家neo 宁国市政府店</em> 180~200/间</span><span class="chip">全天免费点位</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>中秋假期首日 + 正日，<b>7:00 前上高速</b>避开第一波出程高峰；直达宁国市区酒店放行李</li>
+          <li>皖南川藏线<b>东入口路牌</b>打卡；<b>储家滩</b>「安徽小桂林」湖边散步观景 2~3 小时（免费、有免费停车场）</li>
+          <li>不坐竹筏游船，只在岸边看山水倒影；傍晚回市区休息，养足精神明天进山</li>
+          <li>提示：不要直接导整条川藏线，<b>分段导航</b>；山里信号差，出发前下载离线地图</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>娘家私房菜：神仙鸡、臭鳜鱼、绩溪炒粉丝；路边宁国粑粑。中秋当晚必爆满，<b>9.24 前电话订位</b></div>
+          <div class="box"><b>住</b>如家neo（宁国市政府店）2 间双床，免费停车、可免费取消；商超齐全，次日进山方便</div>
+        </div>
+        <div class="warn"><b>注意：</b>今天车程轻松，坚决不开夜路；进山前把油加满 / 电充满——川藏线沿线补能点极少。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:4/3"><img src="assets/chujiatan.jpg" alt="储家滩晨雾山水" loading="lazy"><figcaption>储家滩 · 晨雾山水（图源：人民网安徽频道）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D2 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D2</span><span class="route">宁国 → 皖南川藏线（东进西出）→ 宣城</span>
+      <div class="badges"><span class="badge fest">中秋假期·周六 = 全年最堵日</span><span class="badge">实际约270km（山路约200）</span><span class="badge">全天6~8h</span><span class="badge">过路费≈30元</span></div></div>
+    <div class="chips"><span class="chip">住 <em>7天优品 宣城敬亭山店</em> 175~195/间</span><span class="chip">全程免费观景</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li><b>6:00 出发、6:30 前进东入口</b>——10 点后六道湾进入拥堵高峰；争取 9:00 前通过桃岭段</li>
+          <li>出发前一晚查「宁国交警 / 泾县交警」公众号：节假期桃岭段常有临时单向管制；旺季 7 座以上白天限时通行</li>
+          <li><b>桃岭六道湾</b>：18 公里连续发卡弯、全程限速 30，只在观景台停车，弯道绝不随便停</li>
+          <li><b>泾县月亮湾</b>河滩溪水浅滩散步（开放式景区，不坐竹筏不漂流）</li>
+          <li>敬亭山跳过，省门票省体力；晕车的人提前 30 分钟吃药</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>喻家河鲜馆：水阳三宝、红烧河鱼、宣城炒米粉</div>
+          <div class="box"><b>住</b>7天优品（宣城敬亭山店）2 间双床，免费停车、可免费取消</div>
+        </div>
+        <div class="warn"><b>注意：</b>山路全部白天开完；电车在泾县或宣城市区优先补电；水墨汀溪段雨后有落石风险，遇雨减速观察通过。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:1/1"><img src="assets/taoling.jpg" alt="桃岭六道湾盘山发卡弯" loading="lazy"><figcaption>桃岭六道湾 · 盘山发卡弯（图源：网易号实拍）</figcaption></figure>
+        <figure style="aspect-ratio:16/9"><img src="assets/yueliangwan.jpg" alt="泾县月亮湾竹筏溪流" loading="lazy"><figcaption>泾县月亮湾 · 汀溪竹海（图源：人民图片）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D3 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D3</span><span class="route">宣城 → 景德镇</span>
+      <div class="badges"><span class="badge">210 km</span><span class="badge">约2.5h</span><span class="badge">过路费≈105元</span></div></div>
+    <div class="chips"><span class="chip">住 <em>锦江之星 陶溪川店</em> 190~210/间（有充电桩）</span><span class="chip">陶溪川周末市集 周五~周日</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>高速直达景德镇，中午到店休整</li>
+          <li>下午<b>御窑国家考古遗址博物馆</b>：免费但需公众号实名预约（周日名额紧，约不上就只逛外围，别花钱找黄牛）</li>
+          <li>晚上<b>陶溪川文创街区</b>——周末市集正好是中秋假期尾场，瓷器摊位、小店、夜市都开</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>回家吃饭（赣菜）：辣椒炒肉、豆冲鱼头、碱水粑炒腊肉；夜宵牛骨粉、油条包麻糍、饺子粑。江西菜偏辣，<b>反复强调微辣</b></div>
+          <div class="box"><b>住</b>锦江之星（景德镇陶溪川店）2 间高级双床，步行到夜市，免费停车、可免费取消</div>
+        </div>
+        <div class="warn"><b>注意：</b>夜市人多，随身物品放身前；今晚只住 1 晚（原方案 2 晚，第 2 晚已改为衡阳分段）。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:3/2"><img src="assets/taoxichuan.jpg" alt="陶溪川文创街区夜景" loading="lazy"><figcaption>陶溪川 · 老瓷厂夜景（图源：中国新闻网）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D4 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D4</span><span class="route">景德镇市区 → 衡阳（本版新增）</span>
+      <div class="badges"><span class="badge">上午短途 + 下午约520km</span><span class="badge">驾车6h</span></div></div>
+    <div class="chips"><span class="chip">住 <em>衡阳经济型连锁（新订）</em> 150~180/间</span><span class="chip">关键拆分日</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>上午二选一：<b>三宝村</b>（山谷陶艺村落，9 点后三宝路易堵，赶早去）或 <b>寒溪村</b>（浮梁臧湾乡，市区东南约 30km，3000 亩茶园「没有屋顶的美术馆」，免费，8:00~17:00）</li>
+          <li><b>12:30 准时出发</b>：经南昌、沪昆高速、京港澳高速南下衡阳，约 6 小时，19:00 前后到店</li>
+          <li>这一晚就是把原方案「Day5 单日 800km 硬扛」拆开的支点——今天不安排任何晚上活动</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>衡阳到店后吃本地湘菜（湘菜辣，同样要微辣）；顺路补给明后天进山的饮水零食</div>
+          <div class="box"><b>住</b>衡阳市区如家/7天/锦江之星级别 2 间双床，同样要求免费取消 + 免费停车，优先带充电桩</div>
+        </div>
+        <div class="warn"><b>电车：</b>出发前充满，途中服务区补电一次；山区高速桩少，见桩就补、不赌下一个。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:3/2"><img src="assets/jingdezhen-2.jpg" alt="景德镇陶溪川片区航拍" loading="lazy"><figcaption>景德镇 · 三宝村/寒溪村方向（图源：视觉中国）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D5 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D5</span><span class="route">衡阳 → 郴州东江镇 ＋ 高椅岭</span>
+      <div class="badges"><span class="badge">200 km</span><span class="badge">约2.5h</span><span class="badge fest">唯一收费景点</span></div></div>
+    <div class="chips"><span class="chip">住 <em>7天酒店 东江湖东江店</em> 185~205/间 ×2晚</span><span class="chip">门票 <em>线上95/人</em>·60-69半价49·70+免票</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>8:00 出发，10:30 到东江镇放行李，午餐东江鱼</li>
+          <li>13:30~16:30 <b>高椅岭丹霞</b>：南门→连椅桥→登天云梯→<b>龙脊背</b>（核心）→悬空栈道→巨蜥湖，环线不走回头路，2~2.5 小时；玻璃桥、滑索等自费全部不玩</li>
+          <li><b>购票规则（重要）</b>：线上票购买 30 分钟后才生效——<b>9.28 提前一天买好</b>；16:40 停止入园；门票单次有效；停车场到景区有免费接驳车；刷身份证入园</li>
+          <li>预期管理：网红「八爪鱼」水面大片是<b>航拍视角</b>，地面看不到；山脊无遮阴，正午暴晒</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>东江鱼馆：清蒸东江鱼、土鸡煲、郴州血鸭（少辣）；山下也有血鸭小馆</div>
+          <div class="box"><b>住</b>7天酒店（郴州东江湖东江店）2 间标准双床，连住 2 晚，吃饭采购方便</div>
+        </div>
+        <div class="warn"><b>安全：</b>悬崖边不翻护栏、只走正规步道、穿防滑鞋、每人自带矿泉水（山上小卖部少）；16:30 前下山，山顶无路灯。<b>兜底：</b>当天到得晚就改 D6 早 8:30 入园，更凉快人更少。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:16/9"><img src="assets/gaoyiling-2.jpg" alt="高椅岭丹霞碧水航拍" loading="lazy"><figcaption>高椅岭 · 碧水丹霞（图源：新华社/光明网）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D6 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D6</span><span class="route">东江湖 · 白廊环湖自驾（本地短途）</span>
+      <div class="badges"><span class="badge free">全天免费</span><span class="badge">约40km</span></div></div>
+    <div class="chips"><span class="chip">连住 7天酒店 第 2 晚</span><span class="chip">机动休整日</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>早起的人 6:30~8:00 看运气赏<b>东江湖晨雾</b>：观雾季为 4~10 月、清晨最盛，9 月底仍有机会（原方案「9月底晨雾很少」说法不准确）——只在免费湖边点位看，不进收费观雾平台、不买游船票</li>
+          <li>上午<b>白廊环湖公路</b>自驾：导航白廊码头，沿途 S 弯观景台、桃花广场停车拍照看湖景</li>
+          <li>下午回酒店休整、采购，为明天进山做准备；累了就原地多住一晚（下一站可免取消费退掉）</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>湖边烤鱼、东江鱼头；白廊沿线农家乐多，注意要微辣</div>
+          <div class="box"><b>住</b>7天酒店（东江湖东江店）连住第 2 晚</div>
+        </div>
+        <div class="warn"><b>注意：</b>环湖路遮阳少，防晒帽 + 墨镜带上。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:16/9"><img src="assets/dongjiang-1.png" alt="东江湖白廊湖畔风车" loading="lazy"><figcaption>东江湖 · 白廊湖畔（图源：红网郴州）</figcaption></figure>
+        <figure style="aspect-ratio:16/9"><img src="assets/dongjiang-2.png" alt="东江湖绿水青山" loading="lazy"><figcaption>东江湖 · 绿水青山（图源：红网郴州）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D7 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D7</span><span class="route">郴州 → 韶关</span>
+      <div class="badges"><span class="badge fest">国庆免费 · 首日车流大</span><span class="badge">高速164km/2h 或 S248约190km/4~5h</span></div></div>
+    <div class="chips"><span class="chip">住 <em>城市便捷 百年东街店</em> 270~300/间</span><span class="chip">不进丹霞山景区</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么走（二选一）</div>
+        <ul>
+          <li><b>方案A（默认推荐）</b>：G4 京港澳高速，免费、只要 2 小时，下午韶关慢慢逛</li>
+          <li><b>方案B（风景向）</b>：S248 南岭盘山公路，沿途江边观景台停车看山水，但要 4~5 小时且国庆首日车流大——走它是「看风景」不是「省时」</li>
+          <li><b>雨天规则</b>：遇雨立刻改高速，南岭雨天盘山对老人不友好</li>
+          <li>下午傍晚：百年东街散步；不进丹霞山景区、不坐游船，路边观景景色够用</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>佬湘楼客家菜：客家酿豆腐、碌鹅、客家老火靓汤</div>
+          <div class="box"><b>住</b>城市便捷（韶关百年东街店）2 间双床，楼下美食街；国庆价可能上浮，尽早锁房</div>
+        </div>
+        <div class="warn"><b>注意：</b>10.1 起进入国庆，控制车速、避开大货车、绝不疲劳驾驶。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:4/3"><img src="assets/danxia.jpg" alt="韶关丹霞山长老峰日出" loading="lazy"><figcaption>韶关 · 丹霞山长老峰（图源：携程游记）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D8 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D8</span><span class="route">韶关 → 赣州</span>
+      <div class="badges"><span class="badge fest">国庆免费</span><span class="badge">260 km</span><span class="badge">约3h</span></div></div>
+    <div class="chips"><span class="chip">住 <em>希格酒店 江南宋城店</em> 280~310/间 ×2晚</span><span class="chip">只逛街不买演出票</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>上午高速直达赣州老城区，中午到店</li>
+          <li>下午~晚上<b>江南宋城</b>：郁孤台、宋代古城墙、建春门古浮桥、八境台一带散步（街区开放免费，只逛街，演出票不买）</li>
+          <li>傍晚贡江边看日落，晚上看古城灯光夜景——第一批国家级夜间文旅消费集聚区，夜景是免费的</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>汆鲜味道：赣南小炒鱼、宁都三杯鸡、黄豆烧鸡爪；小吃宁都肉丸汤、石城芋饺。<b>11:30 / 17:30 提前到店</b>避国庆排队</div>
+          <div class="box"><b>住</b>希格酒店（江南宋城店）2 间双床，连住 2 晚，步行可达宋城</div>
+        </div>
+        <div class="warn"><b>注意：</b>国庆古城人流大，老人走古城墙台阶和浮桥时牵手慢行。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:16/9"><img src="assets/ganzhou-1.jpg" alt="赣州郁孤台夜色" loading="lazy"><figcaption>赣州 · 郁孤台夜色（图源：人民图片）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D9 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D9</span><span class="route">赣州 · 老城休整日</span>
+      <div class="badges"><span class="badge free">不开车</span><span class="badge">机动缓冲</span></div></div>
+    <div class="chips"><span class="chip">连住 希格酒店 第 2 晚</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么玩</div>
+        <ul>
+          <li>老城区随意散步：标准钟、灶儿巷、浮桥两岸，走走停停，把前 8 天的驾驶疲劳卸掉</li>
+          <li>通天岩（收费）跳过；明天要开 600 多公里，今天就是恢复日</li>
+          <li><b>备选方案</b>：若不想 Day10 单日开 650km，可今天下午提前出发约 450km 改住<b>上饶</b>，把 Day10 变 200km 短途（视老人体力决定）</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>继续扫街：宁都肉丸汤、赣南三杯鸡，白天人少时段去</div>
+          <div class="box"><b>住</b>希格酒店（江南宋城店）连住第 2 晚</div>
+        </div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:4/3"><img src="assets/ganzhou-2.jpg" alt="赣州江南宋城夜景灯光" loading="lazy"><figcaption>赣州 · 江南宋城夜景（图源：人民图片）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D10 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D10</span><span class="route">赣州 → 衢州</span>
+      <div class="badges"><span class="badge fest">国庆免费</span><span class="badge">实际 620~700 km</span><span class="badge">7~8h</span><span class="badge">返程高峰日</span></div></div>
+    <div class="chips"><span class="chip">住 <em>如家neo 水亭门店</em> 260~290/间</span><span class="chip">7:00 前必须出发</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日怎么开</div>
+        <ul>
+          <li><b>7:00 前出发</b>，每 2 小时进服务区休息一次；10.4 江西往浙江方向缓行概率高，多留缓冲、坚决不开夜车</li>
+          <li>晚到也不亏：<b>水亭门历史街区</b>夜景亮灯到 21 点半左右，视体力去或不去；太累直接回酒店</li>
+          <li>「先有天王塔，后有衢州城」——三街七巷 + 天王塔夜景是全程最后一个免费彩蛋</li>
+        </ul>
+        <div class="stay">
+          <div class="box"><b>吃</b>衢州人家：开化清水鱼、三头一掌（<b>一定微辣</b>，衢州辣是浙江隐藏王者）、水晶糕</div>
+          <div class="box"><b>住</b>如家neo（衢州水亭门店）2 间高级双床，停车充足、可免费取消，楼下小吃多</div>
+        </div>
+        <div class="warn"><b>注意：</b>出发前看一眼实时路况再定路线；两人轮换开车。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:4/3"><img src="assets/quzhou-2.jpg" alt="衢州水亭门古城墙夜景" loading="lazy"><figcaption>衢州 · 水亭门夜景（图源：澎湃新闻）</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
+  <!-- D11 -->
+  <article class="day reveal">
+    <div class="top"><span class="dno">D11</span><span class="route">衢州 → 宁波 · 回家</span>
+      <div class="badges"><span class="badge fest">国庆免费</span><span class="badge">实际 320~380 km</span><span class="badge">约4h</span></div></div>
+    <div class="chips"><span class="chip">免费期到 10.7 晚 24:00，余量充足</span></div>
+    <div class="body">
+      <div>
+        <div class="block-title">今日安排</div>
+        <ul>
+          <li>早餐后直接返程，中途服务区简单午餐，平安到家</li>
+          <li>10.5 仍是返程高峰，出发前看一眼实时路况；无景点安排，把老人舒舒服服送回家就是今天的唯一任务</li>
+        </ul>
+        <div class="warn"><b>收尾：</b>到家后记得把「可免费取消」但实际没住的订单核对一遍退款状态。</div>
+      </div>
+      <div class="pics">
+        <figure style="aspect-ratio:4/3;background:linear-gradient(150deg,var(--ink-2),var(--bamboo));display:flex;align-items:center;justify-content:center">
+          <span style="font-family:var(--font-kai);font-size:26px;color:#f3e9d2;letter-spacing:6px">满载而归</span>
+        </figure>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- 预算 -->
+<section id="budget" class="reveal">
+  <div class="sec-head"><span class="no">肆</span><h2>修正后整体预算</h2></div>
+  <p class="sec-sub">原方案 8460 元是「里程错误 + 漏算油电停车」共同造成的低估；修正后仍是穷游自驾的正常水平，人均约 2500~3100 元。</p>
+  <table class="budget">
+    <tr><th style="width:30%">类别（4人·2间·约3200km）</th><th style="width:26%">原方案</th><th>修正后参考</th></tr>
+    <tr><td>酒店（10晚×2间）</td><td class="old">4520</td><td>4500~5300（衡阳晚略省、国庆4晚可能上浮）</td></tr>
+    <tr><td>高速费（9.25~9.30 收费段）</td><td class="old">920（分段合计仅490，自相矛盾）</td><td>660~750（10.1 起免费）</td></tr>
+    <tr><td>油费 / 电费</td><td class="old">未计入</td><td>电车 600~900；油车 1700~2100</td></tr>
+    <tr><td>门票（仅高椅岭）</td><td class="old">380</td><td>288~380（60~69岁半价49、70+免票）</td></tr>
+    <tr><td>餐饮（4人11天）</td><td class="old">2640（60元/人/天，偏紧）</td><td>3500~4400（按80~100元/人/天）</td></tr>
+    <tr><td>停车费 / 杂项</td><td class="old">未计入</td><td>250~300</td></tr>
+    <tr class="total"><td>合计</td><td class="old">8460</td><td>电车 ≈9800~11000；油车 ≈11000~12500</td></tr>
+  </table>
+</section>
+
+<!-- 规则 -->
+<section id="rules" class="reveal">
+  <div class="sec-head"><span class="no">伍</span><h2>全程通用规则</h2></div>
+  <p class="sec-sub">原方案里对的部分全部保留，再补上这次评审发现的缺口。</p>
+  <div class="rules">
+    <div class="rule"><b>订房三条件</b>入住前1天24:00前免费取消 + 免费停车 + 电车优先带充电桩。9.25 中秋夜和 10.1~10.4 国庆四晚最容易涨价满房，<b>今明两天就锁</b>，逐单截图取消条款（部分特价房国庆不可退）。</div>
+    <div class="rule"><b>山路原则</b>所有盘山路段只白天行驶，绝不跑夜山路；当天感觉疲劳，直接取消下一站可退酒店、原地多住一晚，不硬赶。</div>
+    <div class="rule"><b>电车原则</b>宁国进山前充满（川藏线桩极少）；衡阳/东江/赣州出发前充满；服务区见桩就补。油车同理：山区段见站就加。</div>
+    <div class="rule"><b>门票原则</b>全程唯一收费景点高椅岭，提前一天线上购票（30分钟生效坑）；游船、漂流、演出、玻璃桥、滑索一律不消费；带身份证刷证。</div>
+    <div class="rule"><b>饮食原则</b>江西、湖南菜偏辣，每餐反复强调少辣/微辣；衢州「三头一掌」看着名字温和，实际很辣，务必叮嘱。</div>
+    <div class="rule"><b>老人保障</b>防滑运动鞋、常用药 + 晕车药 + 创可贴；建议每人一份短期自驾意外险（几十元）；连续驾驶2小时必休15分钟，两人轮换。</div>
+    <div class="rule"><b>天气预案</b>出发前一晚查次日目的地天气；南岭、皖南山区降雨时，山路一律改高速；湘南粤北10月初仍可能有台风外围雨。</div>
+    <div class="rule"><b>导航原则</b>皖南川藏线分段导航；提前下载离线地图（宁国—泾县山区、南岭山区信号差）。</div>
+  </div>
+</section>
+
+<!-- 清单 -->
+<section id="todo" class="reveal">
+  <div class="sec-head"><span class="no">陆</span><h2>出发前待办清单</h2></div>
+  <p class="sec-sub">可以勾选，本浏览器内自动保存进度（今天是 9.7，距出发还有 18 天）。</p>
+  <ul id="checklist">
+    <li data-k="0"><span class="when">9.7~9.8</span><input type="checkbox"><span class="t">改订酒店：取消景德镇第 2 晚 → 新增衡阳 9.28 一晚；锁定宁国 9.25、韶关 10.1、赣州 10.2~10.3、衢州 10.4</span></li>
+    <li data-k="1"><span class="when">9.7~9.8</span><input type="checkbox"><span class="t">车辆检查：胎压、刹车、灯光、玻璃水；电车查电池健康；购买短期意外险</span></li>
+    <li data-k="2"><span class="when">9.24</span><input type="checkbox"><span class="t">电话预订宁国「娘家私房菜」中秋晚餐；手机下载离线地图；备晕车药、常用药</span></li>
+    <li data-k="3"><span class="when">9.25 晚</span><input type="checkbox"><span class="t">查宁国/泾县交警公众号，确认明日桃岭段有无管制；定 5:30 闹钟</span></li>
+    <li data-k="4"><span class="when">9.27</span><input type="checkbox"><span class="t">想逛御窑博物馆的话，公众号提前实名预约 9.27 下午场</span></li>
+    <li data-k="5"><span class="when">9.28</span><input type="checkbox"><span class="t">线上购买高椅岭 9.29 门票（按年龄分全价/半价/免票），截图订单存手机</span></li>
+    <li data-k="6"><span class="when">9.30 晚</span><input type="checkbox"><span class="t">看天气预报，决定 10.1 走 G4 高速还是 S248 山路</span></li>
+    <li data-k="7"><span class="when">10.4</span><input type="checkbox"><span class="t">7:00 前出发，出门前看一眼实时路况</span></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <h4>数据核实与免责说明</h4>
+  <p class="src">节假日与高速免费：国务院办公厅《关于2026年部分节假日安排的通知》（中秋 9.25~9.27 不调休、高速不免费；国庆 10.1~10.7 高速免费）。</p>
+  <p class="src">里程：车主联盟 / 物通网 / 租租车交叉核对（景德镇—郴州 784~851km、赣州—衢州 624~701km、衢州—宁波 317~378km、郴州—韶关高速 164km）。</p>
+  <p class="src">高椅岭：去哪儿网（线上 95 / 老人 49 / 70+ 免票、购票 30 分钟后生效）；郴州新闻网（线下全价 98 / 半价 49）；游客实测（16:40 停止入园、免费接驳车）。</p>
+  <p class="src">图片来源：新华社（光明网）、人民网、人民图片、中国新闻网、视觉中国、红网、澎湃新闻、携程游记、网易号，仅作行程示意展示。</p>
+  <p style="margin-top:10px">以上为 2026-09-07 核实参考值。实时路况、景区票价与管制、酒店价格请以出发当天官方渠道为准；山路驾驶安全以交警通告和天气实况为最终依据。祝一路顺风 🚗</p>
+</footer>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>window.L||document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/scr'+'ipt>');</script>
+<script>
+/* ============ 地图（现代内核） ============ */
+if(typeof L!=='undefined'){
+const P={
+  ningbo:[29.868,121.544],hangzhou:[30.274,120.155],ningguo:[30.623,118.985],
+  chujiatan:[30.56,118.86],suodian:[30.50,118.62],taoling:[30.45,118.50],tingxi:[30.40,118.47],
+  yueliangwan:[30.53,118.44],xuancheng:[30.94,118.76],jixi:[30.07,118.40],huangshan:[29.71,118.34],
+  jdz:[29.30,117.20],nanchang:[28.68,115.89],xinyu:[27.81,114.93],zhuzhou:[27.83,113.13],
+  hengyang:[26.90,112.57],chenzhou:[25.79,113.02],gaoyiling:[25.75,113.15],dongjiang:[25.92,113.40],
+  bailang:[25.87,113.46],bailang2:[25.92,113.51],bailang3:[25.97,113.45],
+  yizhang:[25.28,112.63],shaoguan:[24.81,113.60],dayu:[25.40,114.36],ganzhou:[25.85,114.93],
+  shangrao:[28.45,117.94],quzhou:[28.94,118.87],yiwu:[29.31,120.07]
+};
+const DAYS={
+  all:{label:"全程",pts:[P.ningbo,P.hangzhou,P.ningguo,P.chujiatan,P.suodian,P.taoling,P.yueliangwan,P.xuancheng,P.jixi,P.huangshan,P.jdz,P.nanchang,P.xinyu,P.zhuzhou,P.hengyang,P.chenzhou,P.gaoyiling,P.dongjiang,P.bailang,P.bailang2,P.bailang3,P.dongjiang,P.chenzhou,P.yizhang,P.shaoguan,P.dayu,P.ganzhou,P.nanchang,P.shangrao,P.quzhou,P.yiwu,P.ningbo],
+       info:"<b>全程示意</b>：宁波 → 宁国 → 皖南川藏线 → 宣城 → 景德镇 →（衡阳分段）→ 郴州东江 → 韶关 → 赣州 → 衢州 → 宁波，约 3200 km 大环线。"},
+  d1:{label:"D1",pts:[P.ningbo,P.hangzhou,P.ningguo],info:"<b>D1 · 9.25 中秋</b>：宁波 → 杭州湾 → 宁国市区（310km / 3.5h）。下午：东入口路牌 + 储家滩。"},
+  d2:{label:"D2",pts:[P.ningguo,P.chujiatan,P.suodian,P.taoling,P.tingxi,P.yueliangwan,P.xuancheng],info:"<b>D2 · 9.26</b>：宁国 → 皖南川藏线（东进西出，约200km山路）→ 泾县 → 宣城。6:30 前进山！"},
+  d3:{label:"D3",pts:[P.xuancheng,P.jixi,P.huangshan,P.jdz],info:"<b>D3 · 9.27</b>：宣城 →（经黄山方向）→ 景德镇（210km / 2.5h）。傍晚陶溪川周末市集尾场。"},
+  d4:{label:"D4",pts:[P.jdz,P.nanchang,P.xinyu,P.zhuzhou,P.hengyang],info:"<b>D4 · 9.28</b>：上午三宝村/寒溪村，12:30 出发 → 南昌 → 沪昆 → 衡阳（约520km / 6h）。本版新增的拆分点。"},
+  d5:{label:"D5",pts:[P.hengyang,P.chenzhou,P.gaoyiling,P.dongjiang],info:"<b>D5 · 9.29</b>：衡阳 → 郴州 → 高椅岭（下午入园）→ 东江镇（200km / 2.5h）。"},
+  d6:{label:"D6",pts:[P.dongjiang,P.bailang,P.bailang2,P.bailang3,P.dongjiang],info:"<b>D6 · 9.30</b>：白廊环湖公路自驾（免费），清晨可碰运气看东江湖雾；下午休整。"},
+  d7:{label:"D7",pts:[P.dongjiang,P.chenzhou,P.yizhang,P.shaoguan],info:"<b>D7 · 10.1 免费</b>：郴州 →（G4高速2h 或 S248南岭山路4~5h，雨天必走高速）→ 韶关。"},
+  d8:{label:"D8",pts:[P.shaoguan,P.dayu,P.ganzhou],info:"<b>D8 · 10.2 免费</b>：韶关 → 大余 → 赣州老城区（260km / 3h）。下午江南宋城 + 夜景。"},
+  d9:{label:"D9",pts:[P.ganzhou],info:"<b>D9 · 10.3</b>：赣州休整日，不开车。备选：下午提前改住上饶，缩短明天车程。"},
+  d10:{label:"D10",pts:[P.ganzhou,P.nanchang,P.shangrao,P.quzhou],info:"<b>D10 · 10.4 免费</b>：赣州 → 南昌 → 上饶 → 衢州（实际620~700km / 7~8h），7:00 前出发，返程高峰日。"},
+  d11:{label:"D11",pts:[P.quzhou,P.yiwu,P.ningbo],info:"<b>D11 · 10.5 免费</b>：衢州 → 义乌 → 宁波（320~380km / 4h），直接回家。"}
+};
+const CITIES=[[P.ningbo,"宁波（起/终）"],[P.ningguo,"宁国 D1宿"],[P.xuancheng,"宣城 D2宿"],[P.jdz,"景德镇 D3宿"],
+  [P.hengyang,"衡阳 D4宿(新增)"],[P.dongjiang,"东江镇 D5-6宿"],[P.shaoguan,"韶关 D7宿"],
+  [P.ganzhou,"赣州 D8-9宿"],[P.quzhou,"衢州 D10宿"]];
+
+const map=L.map('map',{scrollWheelZoom:true}).setView([28.2,117.2],6);
+const amap=L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
+  {subdomains:['1','2','3','4'],maxZoom:18,attribution:'© 高德地图'});
+const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'});
+let amapFailed=false;
+amap.on('tileerror',function(){ if(!amapFailed){amapFailed=true; map.removeLayer(amap); osm.addTo(map);} });
+amap.addTo(map);
+
+const routeLayer=L.layerGroup().addTo(map);
+function cityIcon(n){return L.divIcon({className:'',html:'<div style="background:#1e3a33;color:#f3e9d2;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #f6f2e7;box-shadow:0 2px 6px rgba(0,0,0,.35)">'+n+'</div>',iconSize:[26,26],iconAnchor:[13,13]});}
+
+CITIES.forEach((c,i)=>{L.marker(c[0],{icon:cityIcon(i===0?'起':i),zIndexOffset:500}).bindTooltip(c[1],{direction:'top',offset:[0,-10]}).addTo(map);});
+
+function showDay(key){
+  routeLayer.clearLayers();
+  const d=DAYS[key];
+  const isAll=key==='all';
+  L.polyline(d.pts,{color:isAll?'#8a8f7e':'#c65a3a',weight:isAll?3:5,opacity:.9,dashArray:isAll?'8 8':null}).addTo(routeLayer);
+  if(d.pts.length>1){
+    L.circleMarker(d.pts[0],{radius:6,color:'#fff',weight:2,fillColor:'#2f5a4d',fillOpacity:1}).addTo(routeLayer);
+    L.circleMarker(d.pts[d.pts.length-1],{radius:6,color:'#fff',weight:2,fillColor:'#c65a3a',fillOpacity:1}).addTo(routeLayer);
+  }
+  map.fitBounds(L.latLngBounds(d.pts).pad(0.35));
+  document.getElementById('dayinfo').innerHTML=d.info;
+  document.querySelectorAll('.daybtns button').forEach(b=>b.classList.toggle('act',b.dataset.k===key));
+}
+const btnWrap=document.getElementById('daybtns');
+Object.keys(DAYS).forEach(k=>{
+  const b=document.createElement('button');b.textContent=DAYS[k].label;b.dataset.k=k;
+  b.onclick=()=>showDay(k);btnWrap.appendChild(b);
+});
+showDay('all');
+}
+</script>
+<script>
+/* ============ 滚动显现 + 清单 + 地图兜底（ES5 老内核也能跑） ============ */
+(function(){
+  function showAll(){var els=document.querySelectorAll('.reveal');for(var i=0;i<els.length;i++){els[i].classList.add('on');}}
+  try{
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){es[i].target.classList.add('on');io.unobserve(es[i].target);}}},{threshold:.06});
+      var els=document.querySelectorAll('.reveal');for(var j=0;j<els.length;j++){io.observe(els[j]);}
+    }else{showAll();}
+  }catch(e){showAll();}
+  try{
+    var lis=document.querySelectorAll('#checklist li');
+    for(var n=0;n<lis.length;n++){(function(li){
+      var cb=li.querySelector('input'),k=li.getAttribute('data-k');
+      try{if(localStorage.getItem('trip0925-'+k)==='1'){cb.checked=true;li.classList.add('done');}}catch(e){}
+      if(cb){cb.onchange=function(){if(cb.checked){li.classList.add('done');}else{li.classList.remove('done');}try{localStorage.setItem('trip0925-'+k,cb.checked?'1':'0');}catch(e){}};}
+    })(lis[n]);}
+  }catch(e){}
+  try{
+    if(typeof L==='undefined'){
+      var m=document.getElementById('map');
+      if(m){m.innerHTML='<div style="padding:48px 24px;text-align:center;color:#6b6f63;font-size:14px;line-height:2.2">交互地图未能加载（需联网 + 现代浏览器内核）。<br>请用 Edge / Chrome 打开，或在搜狗 / 360 浏览器菜单中切换到<b style="color:#c65a3a">「极速模式」</b>后刷新。<br>每日行程文字不受影响。</div>';}
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
