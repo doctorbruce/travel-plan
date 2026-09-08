@@ -1,9 +1,12 @@
 /.git/
 /node_modules/
 /.wrangler/
+/.astron/
 /.gitignore
 /.assetsignore
 /wrangler.jsonc
 /package.json
 /package-lock.json
 /README.md
+/bun.lock
+/*.docx
