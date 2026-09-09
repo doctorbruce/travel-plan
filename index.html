@@ -251,10 +251,10 @@ body{overflow-x:clip}
   <div class="seal">行<br>记</div>
   <div class="kicker">二〇二六 · 中秋国庆 · 四人含80岁老人</div>
   <h1>皖南 · 赣东北 · 浙西<br>十日带老人休闲环线</h1>
-  <p class="sub">保守版 V2：宁波出发约 1750km 小环线，<b>全程免费点位（门票 0 元）、2 个完整休整日（景德镇、衢州）、川藏线东进东出绕开桃岭发卡弯、避开赣西南地质灾害区</b>。删掉上饶一站后衢州连住 2 晚，休整日名副其实；雨天一律改高速，不硬赶。</p>
+  <p class="sub">保守版 V2：宁波出发约 1850km 小环线，<b>全程免费点位（门票 0 元）、2 个完整休整日（景德镇、衢州）、皖南川藏线东进西出走全程——6:30 早进山错峰、老人车上观景、硬性折返预案</b>、避开赣西南地质灾害区。删掉上饶一站后衢州连住 2 晚，休整日名副其实；雨天一律改高速，不硬赶。</p>
   <div class="stats">
     <div class="stat"><b>10 天</b><span>9.25 中秋 — 10.4</span></div>
-    <div class="stat"><b>≈1750 km</b><span>真实总里程</span></div>
+    <div class="stat"><b>≈1850 km</b><span>真实总里程</span></div>
     <div class="stat"><b>8 城</b><span>宁国·宣城·屯溪·景德镇·抚州·衢州·龙游</span></div>
     <div class="stat"><b>0 元</b><span>全程门票</span></div>
     <div class="stat"><b>≈0.9 万</b><span>4 人全包预算（油车）</span></div>
@@ -281,7 +281,7 @@ body{overflow-x:clip}
 <!-- 共享地图区 -->
 <section id="mapsec" class="reveal">
   <div class="sec-head"><span class="no">贰</span><h2>全程路线地图</h2></div>
-  <p class="sec-sub"><span id="mapSubA">方案一：点日期按钮切换每天路线段，先看「全程」感受这个大环线的走向。</span><span id="mapSubB">方案二：东进东出走川藏线平缓段（不进桃岭）；先看「全程」感受这个小环线的节奏。</span></p>
+  <p class="sec-sub"><span id="mapSubA">方案一：点日期按钮切换每天路线段，先看「全程」感受这个大环线的走向。</span><span id="mapSubB">方案二：川藏线东进西出走全程（早出发错峰 + 折返预案）；先看「全程」感受这个小环线的节奏。</span></p>
   <div class="daybtns" id="daybtns"></div>
   <div id="map"></div>
   <div id="dayinfo"></div>
@@ -295,7 +295,7 @@ body{overflow-x:clip}
     <div class="sec-head"><span class="no">壹</span><h2>V2 改了什么：三处关键修订</h2></div>
     <p class="sec-sub">妈妈方案思路很好，这里只修三个自相矛盾的点和几处数据误差。</p>
     <div class="fixgrid">
-      <div class="fix"><h3>① 川藏线：东进东出</h3><span class="was">「东进西出 + 只走平缓段 + 桃岭拍照」三者互斥（东进西出必经桃岭 18km 发卡弯）</span><span class="now">改为东进东出：储家滩→青龙湾→折返，全程平缓段，桃岭不进；9.26 是中秋假期周六，靠 6:30 早出发 + 掉头预案取胜</span></div>
+      <div class="fix"><h3>① 川藏线：东进西出（安全执行版）</h3><span class="was">妈妈坚持走完东进西出全程——意味着必经桃岭六道湾 18km 发卡弯，且 9.26 是中秋假期周六</span><span class="now">走，但加三层保险：6:30 前进山、9:00 前过桃岭（避开 10 点后拥堵高峰）；老人全程车上观景+提前吃晕车药；堵车超 30 分钟或下雨，板桥村立即折返改高速</span></div>
       <div class="fix"><h3>② 删上饶，休整日成真</h3><span class="was">D8 标「完整休整日」却是上饶→衢州搬家日（220km）</span><span class="now">删上饶一站：D7 抚州→衢州（约 310km，国庆免费高速），衢州连住 2 晚，D8 才是不挪酒店的完整休整日</span></div>
       <div class="fix"><h3>③ 里程与路线修正</h3><span class="was">「皖赣交界平缓省道」不存在（S220 安徽段恰是窄山路）；屯溪→景德镇 230km、龙游→宁波 240km 均有偏差</span><span class="now">D4 全程高速 G56（约 140km/75 元）；龙游→宁波实为 341km/约 4h；高速费按 400~455 重算</span></div>
     </div>
@@ -330,25 +330,28 @@ body{overflow-x:clip}
     </article>
 
     <article class="day reveal">
-      <div class="top"><span class="dno">D2</span><span class="route">宁国 → 川藏线平缓段（东进东出）→ 宣城</span>
-        <div class="badges"><span class="badge fest">中秋假期·周六</span><span class="badge">约185km</span><span class="badge">5~6h</span><span class="badge">收费≈30元</span></div></div>
-      <div class="chips"><span class="chip">住 <em>7天优品 宣城敬亭山店</em> 175~195/间</span><span class="chip">桃岭不进</span></div>
+      <div class="top"><span class="dno">D2</span><span class="route">宁国 → 皖南川藏线（东进西出）→ 宣城</span>
+        <div class="badges"><span class="badge fest">中秋假期·周六</span><span class="badge">约270km（山路约200）</span><span class="badge">全天6~8h</span><span class="badge">收费≈30元</span></div></div>
+      <div class="chips"><span class="chip">住 <em>7天优品 宣城敬亭山店</em> 175~195/间</span><span class="chip">桃岭六道湾 ✓ 错峰通过</span></div>
       <div class="body">
         <div>
-          <div class="block-title">今日怎么走（关键修订·东进东出）</div>
+          <div class="block-title">今日怎么走（东进西出·早出发+硬预案）</div>
           <ul>
-            <li><b>6:30 出发、7:00 前进东入口</b> → 储家滩 → 青龙湾观景台 → 红杉林方向到点折返 → 回宁国 → S322/高速去宣城（约 60km）</li>
-            <li><b>桃岭六道湾不进</b>——东进西出必然翻 18km 连续发卡弯，对 80 岁老人不友好</li>
-            <li>9.26 是中秋假期第 2 天 + 周六，并不轻松：<b>预案（硬性）</b>堵车超 30 分钟或天气转阴要下雨，立即掉头，全程高速去宣城</li>
-            <li>老人不下车徒步、不爬山，提前 30 分钟吃晕车药；月亮湾河滩岸边简单走走，漂流全部放弃</li>
+            <li>路线：<b>东入口 → 储家滩 → 青龙湾 → 方塘红杉林（9 月底水杉开始上色）→ 板桥村 → 桃岭六道湾 → 水墨汀溪 → 月亮湾 → 泾县西出口 → 宣城</b>（约 70km）</li>
+            <li><b>6:00 出发、6:30 前进山，9:00 前过桃岭</b>——10:00~16:00 是六道湾拥堵高峰，中秋假期周六车流大；前一晚查「宁国交警 / 泾县交警」公众号，确认桃岭段临时管制</li>
+            <li>桃岭六道湾：18km 连续发卡弯、限速 30，盲弯鸣笛靠右、长下坡用发动机制动、弯道不停车不超车；<b>只在观景台短停拍照</b>，老人不下车徒步</li>
+            <li>老人保护：<b>出发前 30 分钟吃晕车药</b>，过弯段开窗通风；感觉不适就近村落停靠休息，不硬撑</li>
+            <li><b>硬性预案</b>：堵车超 30 分钟 / 下雨 / 老人不适，任一触发 → 板桥村折返（改东进东出）→ 回宁国上高速直奔宣城，全天照样能到</li>
+            <li>月亮湾：开放式景区免费，河滩边简单走走，不坐竹筏不漂流；午餐蔡村镇农家乐（选门口好停车的）</li>
           </ul>
           <div class="stay">
-            <div class="box"><b>吃</b>喻家河鲜馆：水阳三宝、红烧河鱼、宣城炒米粉</div>
+            <div class="box"><b>吃</b>午餐：泾县沿途农家乐；晚餐喻家河鲜馆：水阳三宝、红烧河鱼、宣城炒米粉</div>
             <div class="box"><b>住</b>7天优品（宣城敬亭山店）2 间双床，免费停车、可免费取消</div>
           </div>
-          <div class="warn"><b>安全：</b>山路全部白天开完，绝不夜路；弯道限速慢行、观景台停车，弯道不停车。</div>
+          <div class="warn"><b>安全：</b>山路全部白天开完，绝不夜路；水墨汀溪段雨后有落石风险（2025 年 6 月曾因山体裂缝临时封闭），遇雨减速观察通过；电车宁国出发前充满，山里无充电桩。</div>
         </div>
         <div class="pics">
+          <figure style="aspect-ratio:1/1"><img src="assets/taoling.jpg" alt="桃岭六道湾盘山发卡弯" loading="lazy"><figcaption>桃岭六道湾 · 盘山发卡弯（图源：网易号实拍）</figcaption></figure>
           <figure style="aspect-ratio:16/9"><img src="assets/yueliangwan.jpg" alt="泾县月亮湾竹筏溪流" loading="lazy"><figcaption>泾县月亮湾 · 汀溪竹海（图源：人民图片）</figcaption></figure>
         </div>
       </div>
@@ -536,7 +539,7 @@ body{overflow-x:clip}
   </section>
 
   <section id="budget-b" class="reveal">
-    <div class="sec-head"><span class="no">肆</span><h2>修正后整体预算（4人·2间·约1750km）</h2></div>
+    <div class="sec-head"><span class="no">肆</span><h2>修正后整体预算（4人·2间·约1850km）</h2></div>
     <p class="sec-sub">原 6440 元低估来自：漏算油/电与停车、国庆房价上浮、饭钱按 55 元/人/天偏紧。修正后人均约 2100~2600 元。</p>
     <table class="budget">
       <tr><th style="width:30%">类别</th><th style="width:26%">妈妈方案</th><th>修正后参考</th></tr>
@@ -555,7 +558,7 @@ body{overflow-x:clip}
     <p class="sec-sub">大方向沿用妈妈方案，补上 80 岁老人专属项。</p>
     <div class="rules">
       <div class="rule"><b>订房三条件</b>入住前1天24:00前免费取消 + 免费停车 + 优先电梯房、低楼层、淋浴防滑垫。9.25 中秋夜和 10.1~10.3 国庆三晚尽早锁房，逐单截图取消条款。</div>
-      <div class="rule"><b>山路原则</b>川藏线只走东进东出平缓段，桃岭发卡弯不进；所有山路只白天行驶，绝不夜路；疲劳就直接取消下一站可退酒店、原地多住一晚。</div>
+      <div class="rule"><b>山路原则</b>川藏线东进西出：6:30 前进山、9:00 前过桃岭、只在观景台停车；所有山路只白天行驶，绝不夜路；堵车超 30 分钟或下雨，板桥村折返改高速；疲劳就直接取消下一站可退酒店、原地多住一晚。</div>
       <div class="rule"><b>雨天铁律</b>连续下雨（或预报中雨以上），所有风景路 / 国道 / 省道一律放弃，全部改高速。</div>
       <div class="rule"><b>电车原则</b>宁国进山前充满（川藏线桩极少）；屯溪、景德镇、抚州出发前充满；服务区见桩就补，不赌下一个。</div>
       <div class="rule"><b>门票原则</b>全程免费点位；80 岁老人带身份证，全国多数景区直接免票；游船、漂流、演出、索道一律不消费。</div>
@@ -572,7 +575,8 @@ body{overflow-x:clip}
       <li data-k="0"><span class="when">9.8~9.9</span><input type="checkbox"><span class="t">锁定全部酒店：宁国9.25、宣城9.26、屯溪9.27、景德镇9.28~29、抚州9.30、衢州10.1~10.2、龙游10.3</span></li>
       <li data-k="1"><span class="when">9.8~9.9</span><input type="checkbox"><span class="t">确认高龄意外险条款（80岁可保性、保额）；预约老人出发前体检</span></li>
       <li data-k="2"><span class="when">9.24</span><input type="checkbox"><span class="t">电话订宁国「娘家私房菜」中秋晚餐；备齐常用药+晕车药；下载离线地图</span></li>
-      <li data-k="3"><span class="when">9.25 晚</span><input type="checkbox"><span class="t">查宁国/泾县交警公众号确认明日川藏线管制；定 5:30 闹钟</span></li>
+      <li data-k="3"><span class="when">9.25 晚</span><input type="checkbox"><span class="t">查宁国/泾县交警公众号确认明日桃岭段管制；定 5:30 闹钟（6:00 出发、6:30 前进山）</span></li>
+      <li data-k="7"><span class="when">9.26 早</span><input type="checkbox"><span class="t">80 岁老人出发前 30 分钟服晕车药；过弯段开窗通风；备好折返预案（板桥村→高速→宣城）</span></li>
       <li data-k="4"><span class="when">9.27</span><input type="checkbox"><span class="t">如想去御窑博物馆，公众号提前实名预约 9.29 场次</span></li>
       <li data-k="5"><span class="when">9.29</span><input type="checkbox"><span class="t">查 G56 杭瑞（黄山—婺源段）最新路况与施工管制</span></li>
       <li data-k="6"><span class="when">10.3 晚</span><input type="checkbox"><span class="t">看实时路况，确定 10.4 返程路线（G60 → 甬金方向）</span></li>
@@ -966,15 +970,16 @@ const CITIES_A=[[P_A.ningbo,"宁波（起/终）"],[P_A.ningguo,"宁国 D1宿"],
 
 const P_B={
   ningbo:[29.868,121.544],hangzhou:[30.274,120.155],ningguo:[30.623,118.985],
-  chujiatan:[30.56,118.86],qinglong:[30.55,118.78],xuancheng:[30.94,118.76],
+  chujiatan:[30.56,118.86],qinglong:[30.55,118.78],suodian:[30.50,118.62],banqiao:[30.47,118.55],taoling:[30.45,118.50],tingxi:[30.40,118.47],yueliangwan:[30.53,118.44],
+  xuancheng:[30.94,118.76],
   huangshan:[29.71,118.34],wuyuan:[29.25,117.86],jdz:[29.30,117.20],
   fuzhou:[27.95,116.36],quzhou:[28.94,118.87],longyou:[29.03,119.17]
 };
 const DAYS_B={
-  all:{label:"全程",pts:[P_B.ningbo,P_B.hangzhou,P_B.ningguo,P_B.chujiatan,P_B.qinglong,P_B.chujiatan,P_B.ningguo,P_B.xuancheng,P_B.huangshan,P_B.wuyuan,P_B.jdz,P_B.fuzhou,P_B.quzhou,P_B.longyou,P_B.ningbo],
-       info:"<b>全程示意</b>：宁波 → 宁国 → 川藏线平缓段（东进东出）→ 宣城 → 屯溪 → 景德镇 → 抚州 → 衢州 → 龙游 → 宁波，约 1750 km。"},
+  all:{label:"全程",pts:[P_B.ningbo,P_B.hangzhou,P_B.ningguo,P_B.chujiatan,P_B.qinglong,P_B.suodian,P_B.taoling,P_B.yueliangwan,P_B.xuancheng,P_B.huangshan,P_B.wuyuan,P_B.jdz,P_B.fuzhou,P_B.quzhou,P_B.longyou,P_B.ningbo],
+       info:"<b>全程示意</b>：宁波 → 宁国 → 川藏线东进西出（含桃岭）→ 宣城 → 屯溪 → 景德镇 → 抚州 → 衢州 → 龙游 → 宁波，约 1850 km。"},
   d1:{label:"D1",pts:[P_B.ningbo,P_B.hangzhou,P_B.ningguo],info:"<b>D1 · 9.25 中秋</b>：宁波 → 宁国（310km / 3.5h，收费≈145元）。储家滩湖边平地散步。"},
-  d2:{label:"D2",pts:[P_B.ningguo,P_B.chujiatan,P_B.qinglong,P_B.chujiatan,P_B.ningguo,P_B.xuancheng],info:"<b>D2 · 9.26</b>：东进东出平缓段（不进桃岭）：储家滩→青龙湾→折返→宣城（约185km）。6:30 出发，堵车30分钟即掉头。"},
+  d2:{label:"D2",pts:[P_B.ningguo,P_B.chujiatan,P_B.qinglong,P_B.suodian,P_B.taoling,P_B.tingxi,P_B.yueliangwan,P_B.xuancheng],info:"<b>D2 · 9.26 东进西出</b>：宁国 → 储家滩 → 青龙湾 → 红杉林 → 板桥 → 桃岭六道湾 → 水墨汀溪 → 月亮湾 → 泾县西出口 → 宣城（约270km，山路约200）。6:30 前进山、9:00 前过桃岭；堵车>30分钟或下雨 → 板桥折返改高速。"},
   d3:{label:"D3",pts:[P_B.xuancheng,P_B.huangshan],info:"<b>D3 · 9.27</b>：宣城→屯溪（198km / 2.7h，高速为主）。屯溪老街、黎阳in巷夜景。"},
   d4:{label:"D4",pts:[P_B.huangshan,P_B.wuyuan,P_B.jdz],info:"<b>D4 · 9.28</b>：屯溪→婺源→景德镇（约140km / 1.5~2h，全程高速 G56，收费≈75元）。傍晚陶溪川夜市。"},
   d5:{label:"D5",pts:[P_B.jdz],info:"<b>D5 · 9.29</b>：景德镇完整休整日，不挪酒店；昌南湖、老城闲逛。"},
